@@ -169,11 +169,13 @@ def generar_pdf_bytes(nombre, direccion, pais, ciudad, telefono, email,
 
     encabezado_valor = "Valor (USD)" if moneda == "USD" else "Valor (Euros)"
 
+    prefijo_pdf = "EUR " if moneda == "EUR" else "USD "
+                          
     data = [
         ["Concepto", encabezado_valor],
-        ["Valor productos", f"{simbolo}{valor_productos:,.2f}"],
-        ["Tarifa envío", f"{simbolo}{envio:,.2f}"],
-        ["TOTAL", f"{simbolo}{total:,.2f}"],
+        ["Valor productos", f"{prefijo_pdf}{valor_productos:,.2f}"],
+        ["Tarifa envío", f"{prefijo_pdf}{envio:,.2f}"],
+        ["TOTAL", f"{prefijo_pdf}{total:,.2f}"],
     ]
 
     tabla = Table(data, colWidths=[300, 240])
